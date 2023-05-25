@@ -7,6 +7,8 @@ const debug = createDebug("prts-api:root");
 
 const port = process.env.PORT ?? 4000;
 
+const localhostUrl = `http://localhost:${port}`;
+
 app.listen(port, () => {
-  debug(`Listening on ${chalk.green(`http://localhost:${port}`)}`);
+  debug(`Listening on ${chalk.green(localhostUrl)}`);
 });
