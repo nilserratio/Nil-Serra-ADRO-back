@@ -2,7 +2,7 @@ import { type NextFunction, type Response } from "express";
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { type UserCredentialsRequest } from "../../types";
-import User from "../../../database/models/User";
+import User from "../../../database/models/User.js";
 import CustomError from "../../../CustomError/CustomError.js";
 
 export const loginUser = async (
@@ -19,7 +19,7 @@ export const loginUser = async (
       const error = new CustomError(
         401,
         "Wrong Credentials",
-        "You try it to login with Wrong Credentials"
+        "You try to login with Wrong Credentials"
       );
 
       throw error;
