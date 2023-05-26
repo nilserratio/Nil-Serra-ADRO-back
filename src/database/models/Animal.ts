@@ -19,7 +19,11 @@ const animalSchema = new Schema({
     required: true,
   },
   dateOfBirth: {
-    type: Date,
+    type: String,
+  },
+  sex: {
+    type: String,
+    required: true,
   },
   species: {
     type: String,
