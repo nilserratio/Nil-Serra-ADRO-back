@@ -8,7 +8,11 @@ import {
 } from "../../../types";
 import { loginUser } from "../userControllers.js";
 import User from "../../../../database/models/User.js";
-import CustomError from "../../../../CustomError/CustomError";
+import CustomError from "../../../../CustomError/CustomError.js";
+import {
+  privateMessage,
+  statusCode,
+} from "../../../utils/responseData/responseData.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -47,7 +51,7 @@ describe("Given a loginUser controller", () => {
     bcrypt.compare = jest.fn().mockResolvedValue(true);
 
     test("Then it should call the response's method status code with 200", async () => {
-      const expectedStatusCode = 200;
+      const expectedStatusCode = statusCode.ok;
 
       await loginUser(
         req as UserCredentialsRequest,
@@ -71,7 +75,10 @@ describe("Given a loginUser controller", () => {
 
   describe("When it recieve a request with a not valid credentials and a response", () => {
     test("Then it should call the recieved next function with a 401 'Wrong Credentials' error", async () => {
-      const error = new CustomError(401, "Wrong Credentials");
+      const error = new CustomError(
+        statusCode.unauthorized,
+        privateMessage.unauthorized
+      );
 
       User.findOne = jest.fn().mockReturnValue({
         exec: jest.fn().mockResolvedValue(undefined),

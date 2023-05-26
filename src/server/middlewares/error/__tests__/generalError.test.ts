@@ -1,6 +1,10 @@
 import { type Response, type Request, type NextFunction } from "express";
 import CustomError from "../../../../CustomError/CustomError.js";
 import { generalError } from "../errorMiddlewares.js";
+import {
+  privateMessage,
+  statusCode,
+} from "../../../utils/responseData/responseData.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -17,9 +21,9 @@ describe("Given a generalError middlewware", () => {
   const next = jest.fn();
 
   describe("When it recieve a next function with a notFoundError CustomError and a response", () => {
-    const statusCode = 404;
-    const json = "Endpoint not found";
-    const error = new CustomError(statusCode, json);
+    const errorStatusCode = statusCode.notFound;
+    const json = privateMessage.notFound;
+    const error = new CustomError(errorStatusCode, json);
     const expectedErrorMessage = {
       message: json,
     };
@@ -48,11 +52,11 @@ describe("Given a generalError middlewware", () => {
   });
 
   describe("When it recieve an error without status code and response", () => {
-    const json = "General error, please try it in a few minutes";
+    const json = privateMessage.internalServerError;
     const error = new Error(json);
 
     test("Then it should call the response's method status with 500", () => {
-      const statusCode = 500;
+      const errorStatusCode = statusCode.internalServerError;
 
       generalError(
         error as CustomError,
@@ -61,7 +65,7 @@ describe("Given a generalError middlewware", () => {
         next as NextFunction
       );
 
-      expect(res.status).toHaveBeenCalledWith(statusCode);
+      expect(res.status).toHaveBeenCalledWith(errorStatusCode);
     });
 
     test("Then it should call the response's method json with a message 'General error, please try it in a few minutes'", () => {
