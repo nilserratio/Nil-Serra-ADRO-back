@@ -6,7 +6,7 @@ import {
   notFoundError,
 } from "./middlewares/error/errorMiddlewares.js";
 import { pingController } from "./controllers/ping/pingController.js";
-import { paths } from "./routes/routes.js";
+import { paths } from "./utils/paths/paths.js";
 
 const app = express();
 
