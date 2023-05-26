@@ -1,8 +1,9 @@
 import { Types } from "mongoose";
-import { type AnimalDatabaseStructure } from "../types";
+import { type AnimalDataStructure } from "../types";
 
-export const animalsMock: AnimalDatabaseStructure[] = [
+export const animalsMock: AnimalDataStructure[] = [
   {
+    _id: new Types.ObjectId("64710077b5f9829cfe43b6d9"),
     name: "naiska",
     imageUrl: "naiska.png",
     size: "medium",
@@ -14,6 +15,7 @@ export const animalsMock: AnimalDatabaseStructure[] = [
     user: new Types.ObjectId("64710077b5f9829cfe43b6c9"),
   },
   {
+    _id: new Types.ObjectId("64710077b5f9829cfe43b6a9"),
     name: "taco",
     imageUrl: "taco.png",
     size: "small",
