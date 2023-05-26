@@ -1,0 +1,49 @@
+{
+  "info": {
+    "_postman_id": "9707d4ed-8584-4aa4-aa62-f696672acf39",
+    "name": "PRTS",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27029985"
+  },
+  "item": [
+    {
+      "name": "GET /ping",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/ping",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["ping"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /user/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/user/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["user", "login"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

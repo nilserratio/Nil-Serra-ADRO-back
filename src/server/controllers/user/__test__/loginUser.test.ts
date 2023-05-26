@@ -5,7 +5,8 @@ import { Types } from "mongoose";
 import {
   type UserCredentialsStructure,
   type UserCredentialsRequest,
-} from "../../../types";
+  type CustomResponse,
+} from "../../../types.js";
 import { loginUser } from "../userControllers.js";
 import User from "../../../../database/models/User.js";
 import CustomError from "../../../../CustomError/CustomError.js";
@@ -23,12 +24,12 @@ describe("Given a loginUser controller", () => {
 
   const req: Pick<UserCredentialsRequest, "body"> = {
     body: {
-      username: "usuaias",
-      password: "usuaias",
+      username: "admin",
+      password: "admin",
     },
   };
 
-  const res: Pick<Response, "status" | "json"> = {
+  const res: CustomResponse = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
   };
@@ -40,8 +41,8 @@ describe("Given a loginUser controller", () => {
   describe("When it recieve a request with a valid credentials and a response", () => {
     const mockUser: UserCredentialsStructure = {
       _id: new Types.ObjectId().toString(),
-      username: "usuaias",
-      password: "usuaias",
+      username: "admin",
+      password: "admin",
     };
 
     User.findOne = jest.fn().mockReturnValue({
