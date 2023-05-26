@@ -40,4 +40,20 @@ describe("Given a getAnimals controller", () => {
       expect(res.json).toHaveBeenCalledWith(expectedResponseBody);
     });
   });
+
+  describe("When it receives a next function and the exec method rejects with an 'General Error' error", () => {
+    test("Then it should call next function with the 'General Error' error", async () => {
+      const expectedError = new TypeError(
+        "Animal_1.default.find(...).limit is not a function]"
+      );
+
+      Animal.find = jest.fn().mockReturnValue({
+        exec: jest.fn().mockRejectedValue(expectedError),
+      });
+
+      await getAnimals(req as Request, res as Response, next);
+
+      expect(next).toHaveBeenCalledWith(expectedError);
+    });
+  });
 });
