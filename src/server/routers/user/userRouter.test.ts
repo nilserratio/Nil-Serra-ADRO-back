@@ -16,7 +16,7 @@ import {
   mockUserHashed,
   mockedUser,
   unauthorizedMockedUser,
-} from "../../mocks/userMocks.js";
+} from "../../../mocks/userMocks.js";
 
 let server: MongoMemoryServer;
 

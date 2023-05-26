@@ -1,4 +1,4 @@
-import { type UserCredentials } from "../types";
+import { type UserCredentials } from "../server/types";
 import { type BadRequestUserCredentials } from "./types";
 
 export const mockedUser: UserCredentials = {
