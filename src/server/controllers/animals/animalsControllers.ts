@@ -1,5 +1,5 @@
 import { type Request, type NextFunction, type Response } from "express";
-import Animal from "../../../database/models/Animal";
+import Animal from "../../../database/models/Animal.js";
 
 export const getAnimals = async (
   req: Request,

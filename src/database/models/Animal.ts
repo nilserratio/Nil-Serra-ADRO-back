@@ -1,5 +1,5 @@
 import { Schema, Types, model } from "mongoose";
-import User from "./User";
+import User from "./User.js";
 
 const animalSchema = new Schema({
   name: {
