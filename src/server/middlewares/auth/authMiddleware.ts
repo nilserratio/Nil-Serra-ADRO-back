@@ -2,7 +2,6 @@ import { type NextFunction, type Response } from "express";
 import jwt from "jsonwebtoken";
 import CustomError from "../../../CustomError/CustomError.js";
 import {
-  privateMessage,
   publicMessage,
   statusCode,
 } from "../../utils/responseData/responseData.js";
@@ -15,7 +14,7 @@ export const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
     if (!authorizationHeader?.includes("Bearer")) {
       const error = new CustomError(
         statusCode.unauthorized,
-        privateMessage.unauthorized,
+        "Missing token",
         publicMessage.unauthorized
       );
 
@@ -34,10 +33,11 @@ export const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
       (error as Error).name === "JsonWebTokenError"
         ? new CustomError(
             statusCode.unauthorized,
-            privateMessage.unauthorized,
+            "Invalid token",
             publicMessage.unauthorized
           )
         : error;
+
     next(customError);
   }
 };
