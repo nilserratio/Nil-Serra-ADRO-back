@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { type AnimalDataStructure } from "../types";
+import { type AnimalDataStructure } from "../../types";
 
 export const animalsMock: AnimalDataStructure[] = [
   {
@@ -8,8 +8,8 @@ export const animalsMock: AnimalDataStructure[] = [
     imageUrl: "naiska.png",
     size: "medium",
     description: "a naiska dog",
-    dateOfBirth: "10/08/2015",
-    sex: "female",
+    yearOfBirth: "10/08/2015",
+    gender: "female",
     species: "dog",
     races: ["border-collie"],
     user: new Types.ObjectId("64710077b5f9829cfe43b6c9"),
@@ -20,8 +20,8 @@ export const animalsMock: AnimalDataStructure[] = [
     imageUrl: "taco.png",
     size: "small",
     description: "a taco dog",
-    dateOfBirth: "20/07/2022",
-    sex: "male",
+    yearOfBirth: "20/07/2022",
+    gender: "male",
     species: "dog",
     races: ["dashund"],
     user: new Types.ObjectId("6471018db5f9829cfe43b6ca"),

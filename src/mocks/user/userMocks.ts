@@ -1,5 +1,5 @@
-import { type UserCredentials } from "../server/types";
-import { type BadRequestUserCredentials } from "./types";
+import { type UserCredentials } from "../../server/types";
+import { type BadRequestUserCredentials } from "../types";
 
 export const mockedUser: UserCredentials = {
   username: "admin",
@@ -22,7 +22,7 @@ export const badRequestMockedUser: BadRequestUserCredentials = {
 };
 
 export const tokenMock =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZhNGE2YWUyN2UxMDIyNzZmMDk4ZDYiLCJuYW1lIjoidXNhaWFzIiwiaWF0IjoxNjg0NzQ5ODIwLCJleHAiOjE2ODUzNTQ2MjB9.oPNY8Bunrz4W6e540NRbHyL1qEbJUbha5a-_BGo-fX4";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYTA5MGI5MjYxNTYwMDk3NDY5MTMiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU2OTUyNDYsImV4cCI6MTY4NjMwMDA0Nn0.Uqda2XttsTOZe7PlpcO268zzeOwkoX4pDRDfxf7NljE";
 
 export const tokenPayloadMock = {
   sub: "646a4a6ae27e102276f098d6",

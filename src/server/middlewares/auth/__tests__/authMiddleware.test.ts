@@ -2,7 +2,10 @@ import jwt from "jsonwebtoken";
 import { auth } from "../authMiddleware.js";
 import { type CustomRequest } from "../../../types.js";
 import { type Request, type NextFunction, type Response } from "express";
-import { tokenMock, tokenPayloadMock } from "../../../../mocks/userMocks.js";
+import {
+  tokenMock,
+  tokenPayloadMock,
+} from "../../../../mocks/user/userMocks.js";
 import CustomError from "../../../../CustomError/CustomError.js";
 import {
   publicMessage,
