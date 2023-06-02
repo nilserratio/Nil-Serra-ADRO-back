@@ -4,4 +4,5 @@ export const paths: Paths = {
   ping: "/ping",
   user: "/user",
   login: "/login",
+  animals: "/animals",
 };
