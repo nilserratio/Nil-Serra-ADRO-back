@@ -5,8 +5,8 @@ export interface AnimalDatabaseStructure {
   imageUrl: string;
   size: string;
   description: string;
-  dateOfBirth: string;
-  sex: string;
+  yearOfBirth: string;
+  gender: string;
   species: string;
   races: string[];
   user: Types.ObjectId;

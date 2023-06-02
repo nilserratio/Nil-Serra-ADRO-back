@@ -1,7 +1,7 @@
 import { type Request, type Response } from "express";
 import { type CustomResponse } from "../../../types.js";
 import Animal from "../../../../database/models/Animal.js";
-import { animalsMock } from "../../../../data/animals.js";
+import { animalsMock } from "../../../../mocks/animals/animalsMocks.js";
 import { getAnimals } from "../animalsControllers.js";
 import { statusCode } from "../../../utils/responseData/responseData.js";
 
