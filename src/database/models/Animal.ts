@@ -6,7 +6,15 @@ const animalSchema = new Schema({
     type: String,
     required: true,
   },
-  imageUrl: {
+  species: {
+    type: String,
+    required: true,
+  },
+  races: {
+    type: [String],
+    required: true,
+  },
+  gender: {
     type: String,
     required: true,
   },
@@ -14,23 +22,17 @@ const animalSchema = new Schema({
     type: String,
     required: true,
   },
+  yearOfBirth: {
+    type: String,
+    required: true,
+  },
+  imageUrl: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
-  },
-  dateOfBirth: {
-    type: String,
-  },
-  sex: {
-    type: String,
-    required: true,
-  },
-  species: {
-    type: String,
-    required: true,
-  },
-  races: {
-    type: [String],
   },
   user: {
     type: Types.ObjectId,

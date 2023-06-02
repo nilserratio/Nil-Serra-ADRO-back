@@ -1,6 +1,10 @@
 import { type Response, type Request } from "express";
 import { type Types } from "mongoose";
 
+export interface CustomRequest extends Request {
+  id: string;
+}
+
 export type CustomResponse = Pick<Response, "status" | "json">;
 
 export interface UserCredentials {
