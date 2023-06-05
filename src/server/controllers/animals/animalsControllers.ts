@@ -7,11 +7,11 @@ export const getAnimals = async (
   next: NextFunction
 ) => {
   try {
-    const animals = await Animal.find().exec();
+    const animals = await Animal.find().limit(10).exec();
 
     res.status(200);
     res.json({ animals });
-  } catch (error: unknown) {
+  } catch (error) {
     next(error);
   }
 };

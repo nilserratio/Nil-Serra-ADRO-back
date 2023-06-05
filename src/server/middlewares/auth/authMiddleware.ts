@@ -7,7 +7,7 @@ import {
 } from "../../utils/responseData/responseData.js";
 import { type CustomRequest } from "../../types.js";
 
-export const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
+const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
   try {
     const authorizationHeader = req.header("Authorization");
 
@@ -41,3 +41,5 @@ export const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
     next(customError);
   }
 };
+
+export default auth;

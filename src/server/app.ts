@@ -8,7 +8,6 @@ import {
 import { pingController } from "./controllers/ping/pingController.js";
 import { paths } from "./utils/paths/paths.js";
 import userRouter from "./routers/user/userRouter.js";
-import { auth } from "./middlewares/auth/authMiddleware.js";
 import animalsRouter from "./routers/animals/animalsRouter.js";
 
 const app = express();
@@ -30,7 +29,7 @@ app.get(paths.ping, pingController);
 
 app.use(paths.user, userRouter);
 
-app.use(paths.animals, auth, animalsRouter);
+app.use(paths.animals, animalsRouter);
 
 app.use(notFoundError);
 
