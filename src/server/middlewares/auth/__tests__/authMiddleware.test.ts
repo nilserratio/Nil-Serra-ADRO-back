@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { auth } from "../authMiddleware.js";
+import auth from "../authMiddleware.js";
 import { type CustomRequest } from "../../../types.js";
 import { type Request, type NextFunction, type Response } from "express";
 import {
@@ -34,7 +34,7 @@ describe("Given an auth middleware", () => {
   });
 
   describe("When it recieve an invalid token inside an 'Authorization' header and a next function ", () => {
-    test("Then it should call the recieved next function with the error 401, 'Wrong Credentials'", () => {
+    test("Then it should call the recieved next function with the error 401, 'Invalid token'", () => {
       const expectedError = new CustomError(
         statusCode.unauthorized,
         "Invalid token",

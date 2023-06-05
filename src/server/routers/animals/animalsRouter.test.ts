@@ -1,9 +1,9 @@
 import "../../../loadEnvironment.js";
 import request from "supertest";
-import { MongoMemoryServer } from "mongodb-memory-server";
-import connectToDatabase from "../../../database/connectToDatabase";
 import mongoose from "mongoose";
-import Animal from "../../../database/models/Animal";
+import { MongoMemoryServer } from "mongodb-memory-server";
+import connectToDatabase from "../../../database/connectToDatabase.js";
+import Animal from "../../../database/models/Animal.js";
 import { animalsMock } from "../../../mocks/animals/animalsMocks.js";
 import app from "../../app.js";
 import { paths } from "../../utils/paths/paths.js";
@@ -26,17 +26,21 @@ afterEach(async () => {
   await Animal.deleteMany();
 });
 
-describe("Given a GET '/animals' endpoint", () => {
-  beforeEach(async () => {
-    await Animal.create(animalsMock);
-  });
+const token = tokenMock;
 
+describe("Given a GET '/animals' endpoint", () => {
   describe("When it recieve a request with a valid token", () => {
+    beforeEach(async () => {
+      await Animal.create(animalsMock);
+    });
+
     test("Then it should return a statusCode 200 and a list of animals", async () => {
+      const expectedStatusCode = statusCode.ok;
+
       const response = await request(app)
         .get(paths.animals)
-        .set("Authorization", `Bearer ${tokenMock}`)
-        .expect(statusCode.ok);
+        .set("Authorization", `Bearer ${token}`)
+        .expect(expectedStatusCode);
 
       expect(response.body.animals).toHaveLength(2);
     });
