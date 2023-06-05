@@ -9,8 +9,7 @@ export const getAnimals = async (
   try {
     const animals = await Animal.find().limit(10).exec();
 
-    res.status(200);
-    res.json({ animals });
+    res.status(200).json({ animals });
   } catch (error) {
     next(error);
   }

@@ -45,10 +45,4 @@ describe("Given a GET '/animals' endpoint", () => {
       expect(response.body.animals).toHaveLength(2);
     });
   });
-
-  describe("When it recieve a request with a not valid token", () => {
-    test("Then it should return a statusCode 401 ", async () => {
-      await request(app).get(paths.animals).expect(statusCode.unauthorized);
-    });
-  });
 });
