@@ -19,7 +19,7 @@ export const privateMessage: PrivateAndPublicMessages = {
 export const publicMessage: PrivateAndPublicMessages = {
   ok: "ok",
   badRequest: "Validation Failed",
-  unauthorized: "You try to login with Wrong Credentials",
+  unauthorized: "Wrong Credentials",
   notFound: "The endpoint you provided doesn't exist",
   internalServerError: "General error, please try it in a few minutes",
 };
