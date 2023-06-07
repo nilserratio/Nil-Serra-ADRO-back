@@ -34,9 +34,7 @@ export const removeAnimal = async (
       throw error;
     }
 
-    res
-      .status(200)
-      .json({ message: `Animal ${animal._id.toString()} removed` });
+    res.status(200).json({ message: "Animal removed" });
   } catch (error: unknown) {
     next(error);
   }

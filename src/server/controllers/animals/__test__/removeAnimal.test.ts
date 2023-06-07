@@ -40,8 +40,8 @@ describe("Given a removeAnimal controller", () => {
       expect(res.status).toHaveBeenCalledWith(statusCode.ok);
     });
 
-    test(`Then it should call the response's method json with a message 'Animal ${req.params.idAnimal} removed'`, async () => {
-      const expectedMessage = `Animal ${req.params.idAnimal} removed`;
+    test("Then it should call the response's method json with a message 'Animal removed'", async () => {
+      const expectedMessage = "Animal removed";
 
       await removeAnimal(req as CustomParamsRequest, res as Response, next);
 
