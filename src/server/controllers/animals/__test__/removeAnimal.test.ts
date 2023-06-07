@@ -1,5 +1,5 @@
-import { type Request, type Response } from "express";
-import { type CustomRequest } from "../../../types";
+import { type Response } from "express";
+import { type CustomParamsRequest, type CustomRequest } from "../../../types";
 import { animalsMock } from "../../../../mocks/animals/animalsMocks";
 import Animal from "../../../../database/models/Animal";
 import { removeAnimal } from "../animalsControllers";
@@ -23,7 +23,7 @@ describe("Given a removeAnimal controller", () => {
 
   const req: CustomRequestWithParams = {
     params: {
-      id: animalsMock[0]._id.toString(),
+      idAnimal: animalsMock[0]._id.toString(),
     },
   };
 
@@ -35,15 +35,15 @@ describe("Given a removeAnimal controller", () => {
       .mockReturnValue({ exec: jest.fn().mockResolvedValue(animalMock) });
 
     test("Then it should call the response's method status code with 200", async () => {
-      await removeAnimal(req as Request<{ id: string }>, res as Response, next);
+      await removeAnimal(req as CustomParamsRequest, res as Response, next);
 
       expect(res.status).toHaveBeenCalledWith(statusCode.ok);
     });
 
-    test(`Then it should call the response's method json with a message 'Animal ${req.params.id} removed'`, async () => {
-      const expectedMessage = `Animal ${req.params.id} removed`;
+    test("Then it should call the response's method json with a message 'Animal removed'", async () => {
+      const expectedMessage = "Animal removed";
 
-      await removeAnimal(req as Request<{ id: string }>, res as Response, next);
+      await removeAnimal(req as CustomParamsRequest, res as Response, next);
 
       expect(res.json).toHaveBeenCalledWith({ message: expectedMessage });
     });
@@ -60,7 +60,7 @@ describe("Given a removeAnimal controller", () => {
         "Animal not found"
       );
 
-      await removeAnimal(req as Request<{ id: string }>, res as Response, next);
+      await removeAnimal(req as CustomParamsRequest, res as Response, next);
 
       expect(next).toHaveBeenCalledWith(expectedError);
     });

@@ -28,12 +28,16 @@ afterEach(async () => {
 
 const token = tokenMock;
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+
+beforeEach(async () => {
+  await Animal.create(animalsMock);
+});
+
 describe("Given a GET '/animals' endpoint", () => {
   describe("When it recieve a request with a valid token", () => {
-    beforeEach(async () => {
-      await Animal.create(animalsMock);
-    });
-
     test("Then it should return a statusCode 200 and a list of animals", async () => {
       const expectedStatusCode = statusCode.ok;
 
@@ -43,6 +47,22 @@ describe("Given a GET '/animals' endpoint", () => {
         .expect(expectedStatusCode);
 
       expect(response.body.animals).toHaveLength(2);
+    });
+  });
+});
+
+describe("Given a DELETE '/:idAnimal' endpoint", () => {
+  describe("When it recieve a request with an idAnimal and a valid token", () => {
+    test("Then it should return a statusCode 200 and the message 'Animal removed'", async () => {
+      const expectedStatusCode = statusCode.ok;
+      const expectedMessage = "Animal removed";
+
+      const response = await request(app)
+        .delete(`${paths.animals}/${animalsMock[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${token}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
     });
   });
 });
