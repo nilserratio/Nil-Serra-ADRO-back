@@ -25,3 +25,8 @@ export type UserCredentialsRequest = Request<
 export type UserData = {
   _id: Types.ObjectId;
 } & UserCredentials;
+
+export interface CustomParamsRequest extends Request {
+  userId: string;
+  params: { idAnimal: string };
+}

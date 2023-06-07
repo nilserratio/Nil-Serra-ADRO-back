@@ -2,6 +2,7 @@ import { type Request, type NextFunction, type Response } from "express";
 import Animal from "../../../database/models/Animal.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import { statusCode } from "../../utils/responseData/responseData.js";
+import { type CustomParamsRequest } from "../../types.js";
 
 export const getAnimals = async (
   req: Request,
@@ -18,14 +19,14 @@ export const getAnimals = async (
 };
 
 export const removeAnimal = async (
-  req: Request<{ id: string }>,
+  req: CustomParamsRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
-
   try {
-    const animal = await Animal.findByIdAndDelete(id).exec();
+    const { idAnimal } = req.params;
+
+    const animal = await Animal.findByIdAndDelete(idAnimal).exec();
 
     if (!animal) {
       const error = new CustomError(statusCode.notFound, "Animal not found");
