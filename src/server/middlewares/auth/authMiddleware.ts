@@ -25,7 +25,7 @@ const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
 
     const { sub: id } = jwt.verify(token, process.env.JWT_SECRET!);
 
-    req.id = id as string;
+    req.userId = id as string;
 
     next();
   } catch (error: unknown) {

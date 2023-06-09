@@ -15,3 +15,14 @@ export interface AnimalDatabaseStructure {
 export interface AnimalDataStructure extends AnimalDatabaseStructure {
   _id: Types.ObjectId;
 }
+
+export interface AnimalStructure {
+  name: string;
+  imageUrl: string;
+  size: string;
+  description: string;
+  yearOfBirth: string;
+  gender: string;
+  species: string;
+  races: string[];
+}

@@ -4,6 +4,7 @@ export interface StatusCode {
   notFound: number;
   internalServerError: number;
   badRequest: number;
+  created: number;
 }
 
 export interface PrivateAndPublicMessages {
@@ -12,4 +13,5 @@ export interface PrivateAndPublicMessages {
   notFound: string;
   internalServerError: string;
   badRequest: string;
+  created: string;
 }
