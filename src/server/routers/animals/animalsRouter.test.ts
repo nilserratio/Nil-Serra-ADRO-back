@@ -4,11 +4,20 @@ import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import connectToDatabase from "../../../database/connectToDatabase.js";
 import Animal from "../../../database/models/Animal.js";
-import { animalsMock } from "../../../mocks/animals/animalsMocks.js";
+import {
+  animalsMock,
+  createdAnimalMock,
+} from "../../../mocks/animals/animalsMocks.js";
 import app from "../../app.js";
 import { paths } from "../../utils/paths/paths.js";
-import { tokenMock } from "../../../mocks/user/userMocks.js";
-import { statusCode } from "../../utils/responseData/responseData.js";
+import {
+  tokenMock,
+  unauthorizedMockedUser,
+} from "../../../mocks/user/userMocks.js";
+import {
+  privateMessage,
+  statusCode,
+} from "../../utils/responseData/responseData.js";
 
 let server: MongoMemoryServer;
 
@@ -60,6 +69,53 @@ describe("Given a DELETE '/:idAnimal' endpoint", () => {
       const response = await request(app)
         .delete(`${paths.animals}/${animalsMock[0]._id.toString()}`)
         .set("Authorization", `Bearer ${token}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a POST '/create' endpoint", () => {
+  describe("When it recieve a request with an idAnimal and a new animal data named 'naiska'", () => {
+    test("Then it should return a statusCode 200 and the new animal with name 'naiska'", async () => {
+      const expectedStatusCode = statusCode.created;
+      const expectedAnimalName = "naiska";
+
+      const response = await request(app)
+        .post(`${paths.animals}/create`)
+        .set("Authorization", `Bearer ${token}`)
+        .send(createdAnimalMock)
+        .expect(expectedStatusCode);
+
+      expect(response.body.animal.name).toBe(expectedAnimalName);
+    });
+  });
+
+  describe("When it recieve a request with an idAnimal and a new animal data named 'naiska' but the user is not logged in", () => {
+    test("Then it should return a status code 401 and 'Invalid token' error message", async () => {
+      const expectedStatusCode = statusCode.unauthorized;
+      const expectedMessage = "Invalid token";
+
+      const response = await request(app)
+        .post(`${paths.animals}/create`)
+        .set("Authorization", `Bearer ${unauthorizedMockedUser.password}`)
+        .send(createdAnimalMock)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+
+  describe("When it recieve a request with an idAnimal and a new animal data named 'naiska' but with an extra property", () => {
+    test("Then it shoud return a status code 400 and 'Validation Failed' error message", async () => {
+      const expectedStatusCode = statusCode.badRequest;
+      const expectedMessage = privateMessage.badRequest;
+
+      const response = await request(app)
+        .post(`${paths.animals}/create`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ ...createdAnimalMock, color: "brown" })
         .expect(expectedStatusCode);
 
       expect(response.body.message).toBe(expectedMessage);
