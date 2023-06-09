@@ -2,6 +2,7 @@ import { type PrivateAndPublicMessages, type StatusCode } from "./types";
 
 export const statusCode: StatusCode = {
   ok: 200,
+  created: 201,
   badRequest: 400,
   unauthorized: 401,
   notFound: 404,
@@ -10,6 +11,7 @@ export const statusCode: StatusCode = {
 
 export const privateMessage: PrivateAndPublicMessages = {
   ok: "ok",
+  created: "Animal created",
   badRequest: "Validation Failed",
   unauthorized: "Wrong Credentials",
   notFound: "Endpoint not found",
@@ -18,6 +20,7 @@ export const privateMessage: PrivateAndPublicMessages = {
 
 export const publicMessage: PrivateAndPublicMessages = {
   ok: "ok",
+  created: "Animal created",
   badRequest: "Validation Failed",
   unauthorized: "Wrong Credentials",
   notFound: "The endpoint you provided doesn't exist",

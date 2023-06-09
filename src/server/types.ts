@@ -1,8 +1,11 @@
 import { type Response, type Request } from "express";
 import { type Types } from "mongoose";
+import { type AnimalStructure } from "../types";
 
 export interface CustomRequest extends Request {
-  id: string;
+  userId: string;
+  params: { idAnimal: string };
+  body: AnimalStructure;
 }
 
 export type CustomResponse = Pick<Response, "status" | "json">;
@@ -25,8 +28,3 @@ export type UserCredentialsRequest = Request<
 export type UserData = {
   _id: Types.ObjectId;
 } & UserCredentials;
-
-export interface CustomParamsRequest extends Request {
-  userId: string;
-  params: { idAnimal: string };
-}
