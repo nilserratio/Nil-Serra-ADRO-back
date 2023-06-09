@@ -1,9 +1,13 @@
 import { type Response } from "express";
 import { createdAnimalMock } from "../../../../mocks/animals/animalsMocks";
 import { type CustomRequest } from "../../../types";
-import { statusCode } from "../../../utils/responseData/responseData";
+import {
+  privateMessage,
+  statusCode,
+} from "../../../utils/responseData/responseData";
 import { createAnimal } from "../animalsControllers";
 import Animal from "../../../../database/models/Animal";
+import CustomError from "../../../../CustomError/CustomError";
 
 type CustomResponse = Pick<Response, "status" | "json">;
 type CustomRequestWithBody = Pick<CustomRequest, "userId" | "body">;
@@ -44,6 +48,21 @@ describe("Given a createAnimal controler", () => {
       await createAnimal(req as CustomRequest, res as Response, next);
 
       expect(res.json).toHaveBeenCalledWith({ animal: expectedResponseBody });
+    });
+  });
+
+  describe("When it recieve a request with an not valid userId or body", () => {
+    test("Then it should call next function with the 'Validation Failed' error", async () => {
+      const expectedCustomError = new CustomError(
+        statusCode.badRequest,
+        privateMessage.badRequest
+      );
+
+      Animal.create = jest.fn().mockResolvedValue(undefined);
+
+      await createAnimal(req as CustomRequest, res as Response, next);
+
+      expect(next).toHaveBeenCalledWith(expectedCustomError);
     });
   });
 
