@@ -4,4 +4,5 @@ export interface Paths {
   user: string;
   login: string;
   animals: string;
+  create: string;
 }

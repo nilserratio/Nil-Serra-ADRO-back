@@ -6,4 +6,5 @@ export const paths: Paths = {
   user: "/user",
   login: "/login",
   animals: "/animals",
+  create: "/create",
 };
