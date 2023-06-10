@@ -11,7 +11,7 @@ export const animalsMock: AnimalDataStructure[] = [
     yearOfBirth: "10/08/2015",
     gender: "Female",
     species: "dog",
-    races: ["border-collie"],
+    races: "border-collie",
     user: new Types.ObjectId("64710077b5f9829cfe43b6c9"),
   },
   {
@@ -23,7 +23,7 @@ export const animalsMock: AnimalDataStructure[] = [
     yearOfBirth: "20/07/2022",
     gender: "Male",
     species: "dog",
-    races: ["dashund"],
+    races: "dashund",
     user: new Types.ObjectId("6471018db5f9829cfe43b6ca"),
   },
 ];
@@ -36,5 +36,5 @@ export const createdAnimalMock: AnimalStructure = {
   yearOfBirth: "10/08/2015",
   gender: "Female",
   species: "dog",
-  races: ["border-collie"],
+  races: "border-collie",
 };

@@ -11,7 +11,7 @@ const animalSchema = new Schema({
     required: true,
   },
   races: {
-    type: [String],
+    type: String,
     required: true,
   },
   gender: {

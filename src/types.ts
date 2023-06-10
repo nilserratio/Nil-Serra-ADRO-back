@@ -8,7 +8,7 @@ export interface AnimalDatabaseStructure {
   yearOfBirth: string;
   gender: string;
   species: string;
-  races: string[];
+  races: string;
   user: Types.ObjectId;
 }
 
@@ -24,5 +24,5 @@ export interface AnimalStructure {
   yearOfBirth: string;
   gender: string;
   species: string;
-  races: string[];
+  races: string;
 }
