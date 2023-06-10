@@ -5,7 +5,7 @@ export const createAnimalSchema = {
   body: Joi.object<AnimalStructure>({
     name: Joi.string().required(),
     species: Joi.string().required(),
-    races: Joi.array().required(),
+    races: Joi.string().required(),
     gender: Joi.string().required(),
     size: Joi.string().required(),
     yearOfBirth: Joi.string().required(),
