@@ -1,5 +1,8 @@
 import { type Response } from "express";
-import { type CustomRequest, type CustomResponse } from "../../../types.js";
+import {
+  type CustomRequestQuerys,
+  type CustomResponse,
+} from "../../../types.js";
 import Animal from "../../../../database/models/Animal.js";
 import { animalsMock } from "../../../../mocks/animals/animalsMocks.js";
 import { getAnimals } from "../animalsControllers.js";
@@ -10,7 +13,12 @@ beforeEach(() => {
 });
 
 describe("Given a getAnimals controller", () => {
-  const req = {};
+  const req: Pick<CustomRequestQuerys, "query"> = {
+    query: {
+      limit: "10",
+      skip: "5",
+    },
+  };
   const res: CustomResponse = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
@@ -19,14 +27,20 @@ describe("Given a getAnimals controller", () => {
 
   describe("When it receives a response", () => {
     Animal.find = jest.fn().mockReturnValue({
+      sort: jest.fn().mockReturnThis(),
+      skip: jest.fn().mockReturnThis(),
       limit: jest.fn().mockReturnThis(),
       exec: jest.fn().mockResolvedValue(animalsMock),
+    });
+
+    Animal.where = jest.fn().mockReturnValue({
+      countDocuments: jest.fn().mockReturnValue(animalsMock.length),
     });
 
     test("Then it should call the response's method status with 200", async () => {
       const expectedStatusCode = statusCode.ok;
 
-      await getAnimals(req as CustomRequest, res as Response, next);
+      await getAnimals(req as CustomRequestQuerys, res as Response, next);
 
       expect(res.status).toHaveBeenCalledWith(expectedStatusCode);
     });
@@ -34,9 +48,10 @@ describe("Given a getAnimals controller", () => {
     test("Then it should call the response's method json with a list of animals", async () => {
       const expectedResponseBody = {
         animals: animalsMock,
+        totalAnimals: animalsMock.length,
       };
 
-      await getAnimals(req as CustomRequest, res as Response, next);
+      await getAnimals(req as CustomRequestQuerys, res as Response, next);
 
       expect(res.json).toHaveBeenCalledWith(expectedResponseBody);
     });
@@ -49,10 +64,13 @@ describe("Given a getAnimals controller", () => {
       );
 
       Animal.find = jest.fn().mockReturnValue({
+        sort: jest.fn().mockReturnThis(),
+        skip: jest.fn().mockReturnThis(),
+        limit: jest.fn().mockReturnThis(),
         exec: jest.fn().mockRejectedValue(expectedError),
       });
 
-      await getAnimals(req as CustomRequest, res as Response, next);
+      await getAnimals(req as CustomRequestQuerys, res as Response, next);
 
       expect(next).toHaveBeenCalledWith(expectedError);
     });

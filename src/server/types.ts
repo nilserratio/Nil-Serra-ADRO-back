@@ -28,3 +28,10 @@ export type UserCredentialsRequest = Request<
 export type UserData = {
   _id: Types.ObjectId;
 } & UserCredentials;
+
+export interface CustomRequestQuerys extends Request {
+  query: {
+    limit: string;
+    skip: string;
+  };
+}

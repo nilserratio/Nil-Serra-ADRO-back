@@ -13,10 +13,19 @@ export const getAnimals = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    const animals = await Animal.find().limit(10).exec();
+  const limit = Number(req.query.limit);
+  const skip = Number(req.query.skip);
 
-    res.status(200).json({ animals });
+  try {
+    const animals = await Animal.find()
+      .sort({ _id: -1 })
+      .skip(skip)
+      .limit(limit)
+      .exec();
+
+    const totalAnimals = await Animal.where().countDocuments();
+
+    res.status(200).json({ animals, totalAnimals });
   } catch (error) {
     next(error);
   }
