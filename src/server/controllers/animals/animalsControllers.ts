@@ -1,4 +1,5 @@
 import { type Request, type NextFunction, type Response } from "express";
+import { Types } from "mongoose";
 import Animal from "../../../database/models/Animal.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import {
@@ -6,7 +7,6 @@ import {
   statusCode,
 } from "../../utils/responseData/responseData.js";
 import { type CustomRequest } from "../../types.js";
-import { Types } from "mongoose";
 
 export const getAnimals = async (
   req: Request,
@@ -77,6 +77,28 @@ export const createAnimal = async (
     }
 
     res.status(statusCode.created).json({ animal: newAnimal });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAnimalById = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { idAnimal } = req.params;
+
+    const animalById = await Animal.findById(idAnimal).exec();
+
+    if (!animalById) {
+      const error = new CustomError(statusCode.notFound, "Animal not found");
+
+      throw error;
+    }
+
+    res.status(200).json({ animalById });
   } catch (error) {
     next(error);
   }

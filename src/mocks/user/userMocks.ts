@@ -22,7 +22,7 @@ export const badRequestMockedUser: BadRequestUserCredentials = {
 };
 
 export const tokenMock =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYTA5MGI5MjYxNTYwMDk3NDY5MTMiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU5NDkxNzYsImV4cCI6MTY4NjU1Mzk3Nn0.2xzIrKhUeIJnIxDDxx7sopJkLwHzA9os2RmEFV0lfYc";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYTA5MGI5MjYxNTYwMDk3NDY5MTMiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODY1OTMzOTMsImV4cCI6MTY4NzE5ODE5M30.MCqPIYzB2NWhf5TqUkcKDCw19JRQF5vjcPUkX1nky6w";
 
 export const tokenPayloadMock = {
   sub: "646a4a6ae27e102276f098d6",
