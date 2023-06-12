@@ -1,4 +1,5 @@
 import { type Request, type NextFunction, type Response } from "express";
+import { Types } from "mongoose";
 import Animal from "../../../database/models/Animal.js";
 import CustomError from "../../../CustomError/CustomError.js";
 import {
@@ -6,7 +7,6 @@ import {
   statusCode,
 } from "../../utils/responseData/responseData.js";
 import { type CustomRequest } from "../../types.js";
-import { Types } from "mongoose";
 
 export const getAnimals = async (
   req: Request,

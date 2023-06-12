@@ -5,6 +5,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import connectToDatabase from "../../../database/connectToDatabase.js";
 import Animal from "../../../database/models/Animal.js";
 import {
+  animalsByIdMock,
   animalsMock,
   createdAnimalMock,
 } from "../../../mocks/animals/animalsMocks.js";
@@ -119,6 +120,20 @@ describe("Given a POST '/create' endpoint", () => {
         .expect(expectedStatusCode);
 
       expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a GET '/:idAnimal' endpoint", () => {
+  describe("When it recieve a request with an idAnimal", () => {
+    test("Then it should return a statusCode 200 and the animal", async () => {
+      const expectedStatusCode = statusCode.ok;
+
+      const response = await request(app)
+        .get(`${paths.animals}/${animalsMock[0]._id.toString()}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body.animalById).toStrictEqual(animalsByIdMock[0]);
     });
   });
 });
