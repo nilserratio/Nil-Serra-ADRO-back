@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createAnimal,
+  getAnimalById,
   getAnimals,
   removeAnimal,
 } from "../../controllers/animals/animalsControllers.js";
@@ -21,5 +22,7 @@ animalsRouter.post(
   validate(createAnimalSchema, {}, { abortEarly: false }),
   createAnimal
 );
+
+animalsRouter.get("/:idAnimal", getAnimalById);
 
 export default animalsRouter;

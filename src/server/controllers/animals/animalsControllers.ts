@@ -81,3 +81,25 @@ export const createAnimal = async (
     next(error);
   }
 };
+
+export const getAnimalById = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { idAnimal } = req.params;
+
+    const animalById = await Animal.findById(idAnimal).exec();
+
+    if (!animalById) {
+      const error = new CustomError(statusCode.notFound, "Animal not found");
+
+      throw error;
+    }
+
+    res.status(200).json({ animalById });
+  } catch (error) {
+    next(error);
+  }
+};
