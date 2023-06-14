@@ -15,6 +15,7 @@ const app = express();
 const trustedOrigins = [
   process.env.ALLOWED_ORIGIN_DEV!,
   process.env.ALLOWED_ORIGIN_PROD!,
+  process.env.ALLOWED_ORIGIN_PREVIEW!,
 ];
 
 app.use(cors({ origin: trustedOrigins }));
