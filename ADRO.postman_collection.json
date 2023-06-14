@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "9707d4ed-8584-4aa4-aa62-f696672acf39",
     "name": "ADRO",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
     "_exporter_id": "27029985"
   },
   "item": [
@@ -11,13 +11,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "http://localhost:4000/ping",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["ping"]
-        }
+        "url": "http://localhost:4000/ping"
       },
       "response": []
     },
@@ -35,13 +29,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:4000/user/login",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "4000",
-          "path": ["user", "login"]
-        }
+        "url": "http://localhost:4000/user/login"
       },
       "response": []
     },
@@ -50,23 +38,86 @@
       "request": {
         "auth": {
           "type": "bearer",
-          "bearer": [
-            {
-              "key": "token",
-              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYTA5MGI5MjYxNTYwMDk3NDY5MTMiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU2OTUyNDYsImV4cCI6MTY4NjMwMDA0Nn0.Uqda2XttsTOZe7PlpcO268zzeOwkoX4pDRDfxf7NljE",
-              "type": "string"
-            }
-          ]
+          "bearer": {
+            "token": ""
+          }
         },
         "method": "GET",
         "header": [],
+        "url": "http://localhost:4000/animals"
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE /animals/:idAnimal",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYTA5MGI5MjYxNTYwMDk3NDY5MTMiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODYzMTA3NjYsImV4cCI6MTY4NjkxNTU2Nn0.RaBcXsemdKVHKncO4w-iC48gUMiGakwTWimL-Cd_vh4"
+          }
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": "http://localhost:4000/animals/647e06e68164d0de99df79a6"
+      },
+      "response": []
+    },
+    {
+      "name": "POST /create",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDZmYTA5MGI5MjYxNTYwMDk3NDY5MTMiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODYzMTA3NjYsImV4cCI6MTY4NjkxNTU2Nn0.RaBcXsemdKVHKncO4w-iC48gUMiGakwTWimL-Cd_vh4"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n            \"name\": \"Jack\",\r\n            \"species\": \"dog\",\r\n            \"races\": \"Border-collie, Chou-chow\",\r\n            \"gender\": \"Female\",\r\n            \"size\": \"Medium Size\",\r\n            \"yearOfBirth\": \"2019\",\r\n            \"imageUrl\": \"https://cdn.discordapp.com/attachments/1114238887548698687/1115308388017000478/bella-440.webp\",\r\n            \"description\": \"Bella is a friendly Border Collie and Poodle, born in 2019. She is a loving and playful dog who enjoys spending time with people. Bella is great with children and loves going for long walks. She is looking for an active family who can provide her with plenty of exercise and attention. Bella is a loyal companion who will bring joy to any home.\"\r\n        }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://localhost:4000/animals/create"
+      },
+      "response": []
+    },
+    {
+      "name": "GET /animals Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
         "url": {
-          "raw": "http://localhost:4000/animals",
+          "raw": "http://localhost:4000/animals?skip=1&limit=3",
           "protocol": "http",
           "host": ["localhost"],
           "port": "4000",
-          "path": ["animals"]
+          "path": ["animals"],
+          "query": [
+            {
+              "key": "skip",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "3"
+            }
+          ]
         }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /animals/:idAnimal",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:4000/animals/647e06e68164d0de99df79a6"
       },
       "response": []
     }
